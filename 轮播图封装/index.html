@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>me</title>
+    <!-- 引入js -->
+    <script src="./src/swiper.js"></script>
+    <!-- 引入css样式 -->
+    <link rel="stylesheet" href="./src/swiper.css">
+</head>
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">slider1</div>
+            <div class="swiper-slide">slider2</div>
+            <div class="swiper-slide">slider3</div>
+            <div class="swiper-slide">slider4</div>
+        </div>
+        <!-- 添加前进后退按钮 -->
+        <div class="prev btn">&lt;</div>
+        <div class="next btn">&gt;</div>
+        <!-- 添加分页器 -->
+        <div class="swiper-pagination">
+            <!-- 滑块里的每一个小点点 -->
+            <!-- 要根据滑块的多少在js中动态生成 -->
+            <!-- <span class="swiper-pagination-bullet"></span>
+            <span class="swiper-pagination-bullet"></span>
+            <span class="swiper-pagination-bullet"></span>
+            <span class="swiper-pagination-bullet"></span> -->
+        </div>
+    </div>
+</body>
+<script>
+    var mySwiper = new Swiper('.swiper-container',{
+        bullet_clickable: true, //通过点击小圆点是否可以切换
+        autoplay:true,  //是否需要自动轮播
+        direction: 'horizontal'
+    })
+    console.log( mySwiper )
+</script>
+</html>

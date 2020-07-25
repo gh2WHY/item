@@ -1,0 +1,120 @@
+/* 清除所有默认样式 */
+body,h1,h2,h3,h4,h5,h6{
+    font-family:"Microsoft YaHei",sans-serif;
+    line-height:1.35;
+}
+body,input{
+    margin:0;
+}
+p,ul,h1,h2,h3,h4,h5,h6{
+    margin-top:0;
+    margin-bottom:0;
+}
+input,td,th{
+    padding:0;
+}
+ul{
+    padding-left:0;
+    list-style-type: none;
+}
+img{
+    border-style:none;
+}
+
+body{
+    user-select: none;
+}
+
+.swiper-container{
+    position: relative;
+    overflow: hidden;
+    width: 800px;
+    height: 400px;
+    margin: 50px auto;
+    border: 3px solid black;
+}
+
+.swiper-container > .swiper-wrapper{
+    display: flex;
+}
+
+.vertical {
+    flex-direction: column;
+}
+.swiper-container > .swiper-wrapper > .swiper-slide{
+    background-color: pink;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.swiper-container > .swiper-wrapper > .swiper-slide:nth-of-type(2) {
+    background-color: orange;
+}
+
+.swiper-container > .swiper-wrapper > .swiper-slide:nth-of-type(3) {
+    background-color: skyblue;
+}
+
+.swiper-container > .swiper-wrapper > .swiper-slide:nth-of-type(4) {
+    background-color: rgb(135, 235, 160);
+}
+
+.wrapper-transition {
+    transition: 0.5s ease-out;
+}
+
+.swiper-container > .btn {
+    position: absolute;
+    top:0;
+    bottom:0;
+    margin:auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align:center;
+    font-size: 20px;
+    color:#fff;
+    background-color: rgba(0,0,0,.5);
+    cursor: pointer;
+}
+
+.prev {
+    left:10px;
+}
+
+.next {
+    right:10px;
+}
+
+.swiper-container:hover > .btn {
+    background-color: rgba(0,0,0,0.7);
+}
+
+/* 分页器的css */
+.swiper-container > .swiper-pagination {
+    position: absolute;
+    bottom: 10px;
+    right:0;
+    left:0;
+    margin:auto;
+    text-align: center;
+    /* background-color: #fff; */
+}
+/* 给分页器中的每一个小点点设置样式 */
+.swiper-container > .swiper-pagination > .swiper-pagination-bullet {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color:rgba(0,0,0,0.5);
+}
+/* 给每一个兄弟元素添加margin */
+.swiper-container > .swiper-pagination > .swiper-pagination-bullet +  .swiper-pagination-bullet {
+    margin-left:10px;
+}
+/* 权重不够被覆盖 */
+.swiper-container > .swiper-pagination >.btn_bgc {
+    background-color: #74b9ff;
+}
