@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>模拟正方体</title>
+        <style>
+            * {
+                margin: 0;
+            }
+            .biao {
+                perspective: 1000px;
+            }
+            .box {
+                transform-style: preserve-3d;
+                width: 200px;
+                height: 200px;
+                margin: 60px auto;
+                background: rgba(88, 181, 65, 0.5);
+                animation: rotate 5s ease;
+                 /*令动画无限执行下去*/
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+            .box div {
+                position: absolute;
+                width: 200px;
+                height: 200px;
+                opacity: 0.9;
+            }
+            .one {
+                /* background: purple; */
+                background-image:url("images/1.jpg");
+                background-size: contain;
+                transform: translateZ(100px);
+            }
+            .two {
+                  background-image:url("images/2.jpg");
+                background-size: cover;
+              /*   background:orange; */
+                transform: translateZ(-100px);
+            }
+            .three {
+               /*  background:pink; */
+               background-image:url("images/3.jpg");
+                background-size: contain;
+                transform:rotateY(90deg) translateZ(-100px);
+            }
+            .four {
+               /*  background:green; */
+               background-image:url("images/4.jpg");
+                background-size: cover;
+                transform:rotateY(90deg) translateZ(100px);
+            }
+            .five {
+                /* background:blue; */
+                background-image:url("images/5.jpg");
+                background-size: cover;
+                transform:rotateX(90deg) translateZ(100px);
+            }
+            .six {
+                /* background:#000; */
+                background-image:url("images/6.jpg");
+                background-size: cover;
+                transform:rotateX(-90deg) translateZ(100px);
+            }
+             @keyframes rotate{
+            from{
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            to{
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+            }
+             .box:hover .one{
+                transform: translateZ(200px);
+            }
+            .box:hover .two{
+                transform: translateZ(-200px);
+            }
+            .box:hover .three{
+                transform: rotateX(90deg) translateZ(200px);
+            }
+            .box:hover .five{
+                transform: rotateX(270deg) translateZ(200px);
+            }
+            .box:hover .six{
+                transform: rotateY(-90deg) translateZ(200px);
+            }
+            .box:hover .four{
+                transform: rotateY(90deg) translateZ(200px)
+            }
+        </style>
+    </head>
+    <body>
+         <div class="biao">
+            <div class="box">
+                <div class="one" ></div>
+                <div class="two"></div>
+                <div class="three"></div>
+                <div class="four"></div>
+                <div class="five"></div>
+                <div class="six"></div>
+            </div>
+         </div>
+     </body>
+</html>
