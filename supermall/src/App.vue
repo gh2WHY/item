@@ -15,9 +15,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
   @import 'assets/css/base.css';
   .tabbar {
+    z-index : 10;
     background-color: #fff;
   }
 </style>
