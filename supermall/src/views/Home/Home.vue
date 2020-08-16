@@ -101,12 +101,15 @@ export default {
   },
   //活跃的时候返回该位置
   activated() {
+  
     this.$refs.scroll.scrollTo(0,this.saveY,0);
     this.$refs.scroll.refresh();
+      // console.log('home actived',this.saveY);
   },
   //离开时保存一个位置
   deactivated() {
     this.saveY = this.$refs.scroll.scroll.y;
+    // console.log('home ',this.saveY);
   },
   methods: {
     tabClick(index) {
