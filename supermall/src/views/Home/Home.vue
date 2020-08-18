@@ -47,6 +47,8 @@ import FeatureView from "./childComps/featureView";
 
 import { getHomeMultidata, getHomeGoods } from "network/home";
 import { debounce } from "../../common/utils";
+import {ImgListener} from '../../common/mixin';
+
 export default {
   name: "Home",
   components: {
@@ -75,6 +77,7 @@ export default {
       saveY : 0,
     };
   },
+  mixins : [ImgListener],
   created() {
     //获取首页轮播和推荐数据
     this.getHomeMultidata();
@@ -84,20 +87,10 @@ export default {
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
   },
-  mounted() {
-    const refresh = debounce(this.$refs.scroll.refresh, 500);
-    this.bus.$on("itemImageOnload", () => {
-      refresh();
-    });
-    // this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
-  },
   computed: {
     showGoods() {
       return this.goods[this.currentType].list;
     },
-  },
-  destroyed() {
-    console.log('home destoryed');
   },
   //活跃的时候返回该位置
   activated() {
@@ -108,8 +101,12 @@ export default {
   },
   //离开时保存一个位置
   deactivated() {
+    //1. 保存离开时的位置
     this.saveY = this.$refs.scroll.scroll.y;
     // console.log('home ',this.saveY);
+
+    //2. 取消全局事件绑定
+    this.bus.$off('itemImageOnload',ImgListener)
   },
   methods: {
     tabClick(index) {

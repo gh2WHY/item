@@ -9,7 +9,7 @@
             v-for="(item,index) in titles" 
             :key="index" 
             class="title-item"
-            :class="{active : currentIndex === index}"
+            :class="{active : index === currentIndex} "
             @click="navClick(index)"
             >{{item}}</div>
       </div>
@@ -21,6 +21,14 @@
 import NavBar from "../../../components/common/navbar/NavBar";
 export default {
   name: "DetailNavBar",
+  // props : {
+  //   currentIndex :{
+  //     type : Number,
+  //     default() {
+  //       return 0;
+  //     }
+  //   }
+  // },
   data() {
     return {
       titles: ["商品", "参数", "评论", "推荐"],
@@ -36,6 +44,7 @@ export default {
     },
     navClick(index) {
       this.currentIndex = index;
+      this.$emit('tabClick',index);
     }
   }
 };
