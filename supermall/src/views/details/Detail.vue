@@ -1,8 +1,8 @@
 <template>
   <div id="detail">
     <detail-nav-bar class="detail-nav" @tabClick="contentScroll" ref="nav"></detail-nav-bar>
-
     <scroll class="content" ref="scroll" @scroll="srcoll" :probeType="3">
+      <!-- <div>{{$store.state.cartList}}</div> -->
       <detail-swiper :topImages="topImages"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
@@ -73,6 +73,7 @@ export default {
   created() {
     this.iid = this.$route.params.iid;
     getDetail(this.iid).then((res) => {
+      console.log(res)
       let data = res.result;
       //1.获取轮播图相关数据
       this.topImages = data.itemInfo.topImages;
@@ -104,9 +105,9 @@ export default {
       this.recommendlist = res.data.list;
     });
   },
-  destroyed() {
-    this.bus.$off("itemImageOnload", ImgListener);
-  },
+    destroyed() {
+      this.bus.$off("itemImageOnload", ImgListener);
+    },
   // mounted() {
   //   this.themeTop.push(0);
   //   this.themeTop.push(this.$refs.params.$el.offsetTop);
@@ -149,7 +150,7 @@ export default {
       }
     },
     backTop() {
-      console.log(this.$refs.scroll);
+      // console.log(this.$refs.scroll);
       this.$refs.scroll.scrollTo(0, 0, 500);
     },
 
@@ -162,14 +163,14 @@ export default {
       product.imgURL = this.topImages[0];
       product.title = this.goods.title;
       product.desc = this.goods.desc;
-      product.newPrice = this.goods.nowPrice;
+      product.lowPrice = this.goods.lowPrice;
       // this.$store.commit('addToCart',product);
       this.$store.dispatch('addToCart', product)
     },
   },
 
   mounted() {
-    console.log(ImgListener);
+    // console.log(ImgListener);
   },
 };
 </script>
