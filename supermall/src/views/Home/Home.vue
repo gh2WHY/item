@@ -94,10 +94,10 @@ export default {
   },
   //活跃的时候返回该位置
   activated() {
-  
-    this.$refs.scroll.scrollTo(0,this.saveY,0);
-    this.$refs.scroll.refresh();
-      // console.log('home actived',this.saveY);
+     //一进入组件就滚动到离开时保存的位置
+      this.$refs.scroll && this.$refs.scroll.scrollTo(0, this.saveY, 10);
+      //refresh():重新计算 better-scroll,
+      this.$refs.scroll && this.$refs.scroll.refresh();
   },
   //离开时保存一个位置
   deactivated() {

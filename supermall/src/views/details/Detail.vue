@@ -11,6 +11,7 @@
       <detail-comment-info ref="comment" :commentInfo="commentInfo"></detail-comment-info>
       <good-item ref="recommend" :goods="recommendlist"></good-item>
     </scroll>
+    <toast :isShow="isShow" :message="message" ref = 'toast'></toast>
     <detail-bottom-bar @addToCart="addToCart"></detail-bottom-bar>
     <back-top @click.native="backTop" v-show="isShowBackTop"></back-top>
   </div>
@@ -29,6 +30,7 @@ import DetailBottomBar from "./childComps/DetailBottomBar";
 import Scroll from "../../components/common/BScroll/BScroll";
 import GoodItem from "../../components/content/goods/GoodList";
 import BackTop from "../../components/content/backTop/backTop";
+import Toast from "../../components/common/Toast/Toast";
 
 import { ImgListener, BackToTop } from "../../common/mixin";
 import { debounce } from "../../common/utils";
@@ -54,6 +56,9 @@ export default {
       themeTop: [],
       currentIndex: 0,
       isShowBackTop: false,
+      //定义关于toast中的变量
+      isShow: false,
+      message: "",
     };
   },
   components: {
@@ -68,12 +73,13 @@ export default {
     GoodItem,
     DetailBottomBar,
     BackTop,
+    Toast,
   },
   mixins: [ImgListener],
   created() {
     this.iid = this.$route.params.iid;
     getDetail(this.iid).then((res) => {
-      console.log(res)
+      console.log(res);
       let data = res.result;
       //1.获取轮播图相关数据
       this.topImages = data.itemInfo.topImages;
@@ -105,9 +111,9 @@ export default {
       this.recommendlist = res.data.list;
     });
   },
-    destroyed() {
-      this.bus.$off("itemImageOnload", ImgListener);
-    },
+  destroyed() {
+    this.bus.$off("itemImageOnload", ImgListener);
+  },
   // mounted() {
   //   this.themeTop.push(0);
   //   this.themeTop.push(this.$refs.params.$el.offsetTop);
@@ -165,7 +171,21 @@ export default {
       product.desc = this.goods.desc;
       product.lowPrice = this.goods.lowPrice;
       // this.$store.commit('addToCart',product);
-      this.$store.dispatch('addToCart', product)
+      this.$store.dispatch("addToCart", product).then(res => {
+        console.log(res);
+        console.log(this.$toast);
+        // console.log(this.refs.toast);
+        this.$toast.showToast(res, 800);
+      })
+      // this.$store.dispatch("addToCart", product).then((res) => {
+      //   //修改是否显示和设置显示的内容,从actions.js中接收到
+      //   this.isShow = true;
+      //   this.message = res;
+      //   //信息展示1s之后消失
+      //   setTimeout(() => {
+      //     (this.isShow = false), (this.message = "");
+      //   }, 1000);
+      // });
     },
   },
 
