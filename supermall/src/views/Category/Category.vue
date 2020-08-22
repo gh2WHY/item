@@ -168,10 +168,6 @@ export default {
   deactivated() {
     //1. 保存离开时的位置
     this.saveY = this.$refs.scroll.scroll.y;
-    // console.log('home ',this.saveY);
-
-    //2. 取消全局事件绑定
-    this.bus.$off('itemImageOnload',ImgListener)
   },
 };
 </script>
